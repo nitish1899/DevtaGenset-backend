@@ -16,7 +16,7 @@ async function sendEmailNotification(name, email, userMessage) {
         from: process.env.SENDER_EMAIL,
         to: `${email}`,
         subject: "Query",
-        html: `<!DOCTYPE html>
+        html: `<!DOCTYPE html> 
                 <html lang="en">
                 <head>
                 <meta charset="UTF-8">
@@ -24,52 +24,63 @@ async function sendEmailNotification(name, email, userMessage) {
                 <style>
                     /* General styling */
                     body {
-                    font-family: Arial, sans-serif;
-                    background-color: #f9f9f9;
-                    color: #333;
-                    margin: 0;
-                    padding: 0;
+                        font-family: Arial, sans-serif;
+                        background-color: #f3f4f6;
+                        color: #333;
+                        margin: 0;
+                        padding: 0;
                     }
                     .email-container {
-                    width: 100%;
-                    max-width: 600px;
-                    margin: 0 auto;
-                    background-color: #ffffff;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                        width: 100%;
+                        max-width: 600px;
+                        margin: 20px auto;
+                        background-color: #ffffff;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        border: 1px solid #e1e4e8;
                     }
                     .header {
-                    background-color: #4CAF50;
-                    padding: 20px;
-                    text-align: center;
-                    color: white;
-                    border-radius: 8px 8px 0 0;
+                        background-color: #1a73e8;
+                        padding: 25px;
+                        text-align: center;
+                        color: white;
+                        border-radius: 8px 8px 0 0;
                     }
                     .header h1 {
-                    margin: 0;
-                    font-size: 24px;
+                        margin: 0;
+                        font-size: 22px;
+                        font-weight: normal;
                     }
                     .content {
-                    padding: 20px;
+                        padding: 25px;
                     }
                     .content p {
-                    margin: 16px 0;
-                    font-size: 16px;
-                    line-height: 1.5;
+                        margin: 16px 0;
+                        font-size: 16px;
+                        line-height: 1.6;
                     }
                     .user-message {
-                    background-color: #f1f1f1;
-                    border-left: 4px solid #4CAF50;
-                    padding: 15px;
-                    font-style: italic;
-                    color: #555;
-                    border-radius: 4px;
+                        background-color: #f9fafa;
+                        border-left: 4px solid #1a73e8;
+                        padding: 15px;
+                        font-style: italic;
+                        color: #555;
+                        border-radius: 4px;
+                        margin-top: 20px;
+                    }
+                    .user-message p {
+                        margin: 0;
                     }
                     .footer {
-                    padding: 20px;
-                    text-align: center;
-                    font-size: 12px;
-                    color: #777;
+                        padding: 20px;
+                        text-align: center;
+                        font-size: 12px;
+                        color: #777;
+                        background-color: #f3f4f6;
+                    }
+                    .footer p {
+                        margin: 0;
                     }
                 </style>
                 </head>
@@ -78,32 +89,33 @@ async function sendEmailNotification(name, email, userMessage) {
                 <div class="email-container">
                     <!-- Header Section -->
                     <div class="header">
-                    <h1>We've Received Your Query – Thank You for Reaching Out!</h1>
+                        <h1>Your Query Has Been Received</h1>
                     </div>
 
                     <!-- Content Section -->
                     <div class="content">
-                    <p>Hello ${name},</p>
-                    <p>We have received your query and our team will respond as soon as possible. Here is a copy of your message for your reference:</p>
-                    
-                    <!-- User's Message -->
-                    <div class="user-message">
-                        <p>${userMessage}</p>
-                    </div>
-                    
-                    <p>Thank you for reaching out!</p>
+                        <p>Dear ${name},</p>
+                        <p>Thank you for reaching out to Devta Gensets. We have received your query and our team is already reviewing it. Below is a copy of the message we received from you:</p>
+                        
+                        <!-- User's Message -->
+                        <div class="user-message">
+                            <p>${userMessage}</p>
+                        </div>
+                        
+                        <p>We will get back to you shortly with further information or assistance.</p>
+                        <p>Best regards,</p>
+                        <p><strong>Customer Support Team</strong><br>Devta Gensets</p>
                     </div>
 
                     <!-- Footer Section -->
                     <div class="footer">
-                    <p>&copy; 2024 Devta Gensets. All rights reserved.</p>
+                        <p>&copy; 2024 Devta Gensets. All rights reserved.</p>
                     </div>
                 </div>
 
                 </body>
                 </html>
-`,
-
+            `,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

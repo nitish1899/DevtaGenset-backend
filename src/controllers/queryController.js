@@ -3,12 +3,20 @@ import { sendEmailNotification } from "../services/emailService.js";
 
 const queryController = async (req, res) => {
     try {
-        const { name, email, message } = req.body;
-        const newQuery = new Query({ name, email, message });
+        const { firstName, lastName, email, address, query, } = req.body;
+
+        const newQuery = new Query({
+            firstName,
+            lastName,
+            email,
+            address,
+            query,
+        });
+
         await newQuery.save();
 
         // Send email notification
-        await sendEmailNotification(name, email, message);
+        await sendEmailNotification(`${firstName} ${lastName} `, email, query);
 
         return res.status(200).json({ message: 'Query raised and email sent successfully.' });
     } catch (error) {
