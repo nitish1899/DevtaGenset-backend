@@ -15,7 +15,7 @@ async function sendEmailNotification(name, email, userMessage) {
     const mailOptions = {
         from: process.env.SENDER_EMAIL,
         to: `${email}`,
-        subject: "Query",
+        subject: "[Devtagensets] Recieved your query",
         html: `<!DOCTYPE html> 
                 <html lang="en">
                 <head>
